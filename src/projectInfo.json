@@ -1,0 +1,11 @@
+{
+	"Projects": [
+		{
+			"project": "example",
+			"link": "http://domain_name/pipermail/example/",
+			"engineers": [
+				"liqingjht"
+			]
+		}
+	]
+}

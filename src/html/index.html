@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="en-us">
+
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<!--<meta name="viewport" content="width=device-width, initial-scale=1">-->
+	<title>Sync Patch @Defeng.Liu</title>
+	<link href="css/bootstrap.min.css" rel="stylesheet">
+	<link href="css/flat-ui.min.css" rel="stylesheet">
+	<link href="css/font-awesome.min.css" rel="stylesheet">
+	<link href="css/nav.css" rel="stylesheet">
+	<link href="css/animate.css" rel="stylesheet">
+	<link href="css/hover-min.css" rel="stylesheet">
+	<link href="css/input.css" rel="stylesheet">
+	<link href="css/index.css" rel="stylesheet">
+</head>
+
+<body>
+	<nav class="nav">
+		<div class="burger">
+			<div class="burger__patty"></div>
+		</div>
+		<ul class="nav__list">
+			<li class="nav__item">
+				<a href="#1" class="nav__link"><i class="fa fa-calendar-check-o"></i></a>
+			</li>
+			<li class="nav__item">
+				<a href="#2" class="nav__link"><i class="fa fa-bolt"></i></a>
+			</li>
+			<li class="nav__item">
+				<a href="#3" class="nav__link"><i class="fa fa-history"></i></a>
+			</li>
+			<li class="nav__item">
+				<a href="#4" class="nav__link"><i class="fa fa-cog fa-fw"></i></a>
+			</li>
+		</ul>
+	</nav>
+
+	<div class="cd-overlay-nav">
+		<span></span>
+	</div>
+	<div class="cd-overlay-content">
+		<span></span>
+	</div>
+
+	<div class="main-content">
+		<div class="title-head">
+			<div class="title-message">
+				<i class="message-num" style="display:none;"><span></span></i>
+				<i class="fa fa-bell fa-2x"></i>
+				<span></span>
+			</div>
+			<div class="monitoring" style="display:none;">
+				<img src="./image/monitoring.gif">
+			</div>
+			<div class="running" style="display:none;">
+				<img src="./image/running.gif">
+				<span>0%</span>
+			</div>
+			<ul class="action_list">
+				<li class="window_action">
+					<a href="#1" class="window_lock"><i class="fa fa-unlock"></i></a>
+				</li>
+				<li class="window_action">
+					<a href="#2" class="window_mini"><i class="fa fa-minus"></i></a>
+				</li>
+				<li class="window_action">
+					<a href="#3" class="window_close"><i class="fa fa-power-off"></i></a>
+				</li>
+			</ul>
+			<div id="loading">
+				<div id="loading-center">
+					<div id="loading-center-absolute">
+						<div class="object" id="object_four"></div>
+						<div class="object" id="object_three"></div>
+						<div class="object" id="object_two"></div>
+						<div class="object" id="object_one"></div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="row" style="display:none;" id="firstPage">
+			<div class="col-xs-10" style="text-align:center;">
+				<span>
+					I assume this is your first time to start this tool.<br/>
+					So, you should read this guideline carefully.<br/><br/>
+					Using this tool will collect the hostname、username<br/>
+					and mac of your computer, Just to record how many colleagues<br/>
+					used this tool. Thanks for your kindly undestanding.
+				</span>
+				<div class="first-setup">Click following arrow to setup your account for bugzilla.</div>
+				<div class="fa fa-chevron-down fa-2x"></div>
+			</div>
+		</div>
+		<div class="row" style="display:none;" id="schedule">
+			<div class="row">
+				<div class="col-xs-4" style="text-align:center;">
+					<span class="input input--haruki">
+    				<input class="input__field input__field--haruki" type="text" id="s-project" />
+    				<label class="input__label input__label--haruki" for="s-project">
+        				<span class="input__label-content input__label-content--haruki">Project</span>
+					</label>
+					</span>
+				</div>
+				<div class="col-xs-4" style="text-align:center;">
+					<span class="input input--haruki">
+    				<input class="input__field input__field--haruki" type="text" id="s-person" />
+    				<label class="input__label input__label--haruki" for="s-person">
+        				<span class="input__label-content input__label-content--haruki">Engineers</span>
+					</label>
+					</span>
+				</div>
+				<div class="col-xs-4" style="text-align:left;">
+					<div class="fa fa-chevron-circle-right person-button" id="s-person-button"></div>
+					<div class="person-lists" id="s-person-lists"></div>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-xs-12" style="text-align:center;">
+					<hr style="height:3px; background-color: #6a7989">
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-xs-3 sync-option" style="text-align:left;">
+					<div class="switch-box is-info">
+						<input id="s-close-bug" class="switch-box-input" type="checkbox" style="display:none;" checked/>
+						<label for="s-close-bug" class="switch-box-slider"></label>
+						<label for="s-close-bug" class="switch-box-label">Default</label>
+					</div>
+					<div class="switch-box is-info">
+						<input id="s-assign-to" class="switch-box-input" type="checkbox" style="display:none;" checked/>
+						<label for="s-assign-to" class="switch-box-slider"></label>
+						<label for="s-assign-to" class="switch-box-label">Default</label>
+					</div>
+					<div class="fa fa-space-shuttle fa-3x add-task"></div>
+					<div class="fa fa-play-circle fa-3x start-stop"></div>
+				</div>
+				<div class="col-xs-9 sync-settings" style="text-align:left;">
+					<div class="task-lists" id="s-task-lists"></div>
+				</div>
+			</div>
+		</div>
+		<div class="row" style="display:none;" id="fast">
+			<div class="row">
+				<div class="col-xs-4" style="text-align:center;">
+					<span class="input input--haruki">
+    				<input class="input__field input__field--haruki" type="text" id="f-project" />
+    				<label class="input__label input__label--haruki" for="f-project">
+        				<span class="input__label-content input__label-content--haruki">Project</span>
+					</label>
+					</span>
+				</div>
+				<div class="col-xs-4" style="text-align:center;">
+					<span class="input input--haruki">
+    				<input class="input__field input__field--haruki" type="text" id="f-person" />
+    				<label class="input__label input__label--haruki" for="f-person">
+        				<span class="input__label-content input__label-content--haruki">Engineers</span>
+					</label>
+					</span>
+				</div>
+				<div class="col-xs-4" style="text-align:left;">
+					<div class="fa fa-chevron-circle-right person-button" id="f-person-button"></div>
+					<div class="person-lists" id="f-person-lists"></div>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-xs-12" style="text-align:center;">
+					<hr style="height:3px; background-color: #6a7989">
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-xs-3 sync-option" style="text-align:left;">
+					<div style="margin-bottom:10px;">
+						<span>Before <input type="text" class="input-days" maxlength="4" id="days"> days</span>
+					</div>
+					<div class="switch-box is-info">
+						<input id="f-close-bug" class="switch-box-input" type="checkbox" style="display:none;" checked/>
+						<label for="f-close-bug" class="switch-box-slider"></label>
+						<label for="f-close-bug" class="switch-box-label">Default</label>
+					</div>
+					<div class="switch-box is-info">
+						<input id="f-assign-to" class="switch-box-input" type="checkbox" style="display:none;" checked/>
+						<label for="f-assign-to" class="switch-box-slider"></label>
+						<label for="f-assign-to" class="switch-box-label">Default</label>
+					</div>
+					<div class="fa fa-space-shuttle fa-3x add-task"></div>
+					<div class="fa fa-play-circle fa-3x start-stop"></div>
+				</div>
+				<div class="col-xs-9 sync-settings" style="text-align:left;">
+					<div class="task-lists" id="f-task-lists"></div>
+				</div>
+			</div>
+		</div>
+		<div class="row" style="display:none;" id="history">
+			<div class="col-xs-12">
+				<div class="row">
+					<div class="col-md-offset-3 col-md-6">
+						<div class="tab" role="tabpanel">
+							<!-- Nav tabs -->
+							<ul class="nav nav-tabs h-nav" role="tablist">
+								<li role="presentation" class="active">
+									<a href="#Section1" aria-controls="home" role="tab" data-toggle="tab"><i class="fa fa-envelope-o"></i>Section 1</a>
+								</li>
+								<li role="presentation">
+									<a href="#Section2" aria-controls="profile" role="tab" data-toggle="tab"><i class="fa fa-cubes"></i>Section 2</a>
+								</li>
+								<li role="presentation">
+									<a href="#Section3" aria-controls="messages" role="tab" data-toggle="tab"><i class="fa fa-comments"></i>Section 3</a>
+								</li>
+							</ul>
+							<!-- Tab panes -->
+							<div class="tab-content">
+								<div role="tabpanel" class="tab-pane fade in active" id="Section1">
+									<p>Section1</p>
+								</div>
+								<div role="tabpanel" class="tab-pane fade" id="Section2">
+									<p>..Section2..</p>
+								</div>
+								<div role="tabpanel" class="tab-pane fade" id="Section3">
+									<p>..Section3. </p>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="row" style="display:none;" id="login">
+			<div class="col-xs-6" style="text-align:center;" id="account">
+				<div>
+					<span class="input input--haruki">
+    				<input class="input__field input__field--haruki" type="text" id="username" />
+    				<label class="input__label input__label--haruki" for="username">
+        				<span class="input__label-content input__label-content--haruki">Username</span>
+					</label>
+					</span>
+				</div>
+				<div>
+					<span class="input input--haruki">
+    				<input class="input__field input__field--haruki" type="text" id="password" />
+    				<label class="input__label input__label--haruki" for="password">
+        				<span class="input__label-content input__label-content--haruki">Password</span>
+					</label>
+					</span>
+				</div>
+				<div style="margin-top:50px;">
+					<button class="btn btn-inverse btn-wide" id="saveAccount">Save</button>
+				</div>
+			</div>
+			<div class="col-xs-5 app-info">
+				<div class="logo">
+					<img src="./image/cat.svg" width="70px">
+				</div>
+				<div class="tool-info">
+					<div>Tool Name: Sync Patch</div>
+					<div>Version: V1.0.1</div>
+					<div>Auth: Defeng.Liu</div>
+					<div>E-Mail: defeng.liu@deltaww.com</div>
+					<div>FAQ: http://172.17.92.252:2048/index.html</div>
+					<div>License: MIT</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<!-- Insert this line above script imports  -->
+	<script>
+		if (typeof module === 'object') {
+			window.module = module;
+			module = undefined;
+		}
+	</script>
+
+	<!-- normal script imports etc  -->
+	<script src="js/jquery.min.js"></script>
+	<script src="js/bootstrap.min.js"></script>
+	<script src="js/flat-ui.min.js"></script>
+	<script src="js/velocity.min.js"></script>
+	<script src="js/jquery.autocomplete.min.js"></script>
+	<script src="js/index.js"></script>
+
+	<!-- Insert this line after script imports -->
+	<script>
+		if (window.module) module = window.module;
+	</script>
+</body>
+
+</html>

@@ -1,0 +1,19 @@
+{
+	"bugzillaUrl": "http://domain_name/bugzilla3/index.cgi",
+	"fast": [],
+	"firstStart": false,
+	"maillistUrl": "http://domain_name/cgi-bin/mailman/listinfo",
+	"password": "",
+	"schedule": [
+		{
+			"active": true,
+			"assign": true,
+			"close": true,
+			"engineers": [
+				"liqingjht"
+			],
+			"project": "example"
+		}
+	],
+	"username": ""
+}

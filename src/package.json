@@ -1,0 +1,22 @@
+{
+  "name": "sync-patch",
+  "version": "1.0.0",
+  "description": "A minimal Electron application",
+  "main": "main.js",
+  "scripts": {
+    "start": "electron ."
+  },
+  "keywords": [
+    "Electron"
+  ],
+  "author": "liqingjht",
+  "license": "MIT",
+  "devDependencies": {
+    "electron": "~1.4.13"
+  },
+  "dependencies": {
+    "agentkeepalive": "^3.1.0",
+    "cheerio": "^0.22.0",
+    "request": "^2.81.0"
+  }
+}
